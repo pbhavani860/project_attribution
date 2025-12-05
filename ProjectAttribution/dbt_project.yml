@@ -1,0 +1,21 @@
+name: 'ProjectAttribution'
+version: '1.0.0'
+config-version: 2
+
+profile: 'ga4_attribution'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+
+models:
+  ProjectAttribution:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: table
+    marts:
+      +materialized: table
+
+vars:
+  lookback_days: 30
+  conversion_event: 'purchase'
