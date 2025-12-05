@@ -1,0 +1,9 @@
+.venv/
+.vscode/
+logs/
+__pycache__/
+*.py[cod]
+target/
+dbt_packages/
+*-key.json
+.DS_Store
