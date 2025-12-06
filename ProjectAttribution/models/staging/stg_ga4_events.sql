@@ -15,8 +15,9 @@ SELECT
   COALESCE(traffic_source.source, 'direct') as traffic_source,
   CURRENT_TIMESTAMP() as _loaded_at
 FROM 
-  `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210131`
+  `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 WHERE
-  user_pseudo_id IS NOT NULL
+  -- Use specific date range that we know has data
+  _TABLE_SUFFIX BETWEEN '20210101' AND '20210131'
+  AND user_pseudo_id IS NOT NULL
   AND event_timestamp IS NOT NULL
-LIMIT 10000
