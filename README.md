@@ -5,7 +5,29 @@ Multi-touch attribution analytics for Google Analytics 4 ecommerce data using db
 ## Overview
 
 Built end-to-end attribution analytics pipeline using dbt and BigQuery to analyze 1,204 conversions from 300K+ GA4 events. Implemented first-click and last-click attribution models to identify which marketing channels initiate customer journeys versus which ones close sales. Created 7 tested dbt models, Python real-time streaming script, and 6-chart interactive dashboard. Key finding: Referral traffic is 109% more effective at closing conversions (165 vs 79), revealing it's undervalued in traditional first-click attribution models.
+## Data Architecture
 
+```
+GA4 Public Dataset (events_*)
+        |
+        v
+STAGING (VIEW)
+  - stg_ga4_events
+        |
+        v
+INTERMEDIATE (TABLE)
+  - int_sessions
+  - int_user_journey
+        |
+        v
+MARTS (TABLE)
+  - fct_first_click
+  - fct_last_click
+  - mart_attr_summary
+
+Real-time Streaming:
+Python Streaming Script -> raw_streaming.events_stream
+```
 ##  Quick Stats
 
 - **Conversions Analyzed**: 1,204
