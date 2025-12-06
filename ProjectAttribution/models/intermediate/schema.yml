@@ -28,3 +28,26 @@ models:
       - name: conversion_timestamp
         tests:
           - not_null
+version: 2
+
+models:
+  - name: int_sessions
+    description: "User sessions with 30-minute inactivity timeout"
+    columns:
+      - name: session_id
+        tests:
+          - not_null
+          - unique
+      - name: user_pseudo_id
+        tests:
+          - not_null
+
+  - name: int_user_journey
+    description: "User journey with all touchpoints leading to conversion"
+    columns:
+      - name: user_pseudo_id
+        tests:
+          - not_null
+      - name: conversion_timestamp
+        tests:
+          - not_null

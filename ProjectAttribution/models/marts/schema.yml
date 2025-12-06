@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: fct_first_click_attribution
+    description: "First-click attribution - credits first touchpoint before conversion"
+    columns:
+      - name: attribution_id
+        tests:
+          - not_null
+          - unique
+      - name: conversion_event_id
+        tests:
+          - not_null
+      - name: attributed_source
+        tests:
+          - not_null
+
+  - name: fct_last_click_attribution
+    description: "Last-click attribution - credits last touchpoint before conversion"
+    columns:
+      - name: attribution_id
+        tests:
+          - not_null
+          - unique
+      - name: conversion_event_id
+        tests:
+          - not_null
+      - name: attributed_source
+        tests:
+          - not_null
+
+  - name: mart_attribution_summary
+    description: "Attribution summary aggregated by model, source, and medium"
+    columns:
+      - name: attribution_model
+        tests:
+          - not_null
+      - name: total_conversions
+        tests:
+          - not_null
